@@ -2,6 +2,14 @@
     "identifier": "com.openrouter.translate",
     "versions": [
         {
+            "version": "0.1.11",
+            "desc": "译文支持 Markdown",
+            "sha256": "82e856f28d3237fcc61613d053998df79507d98953d4a48318411e201808a598",
+            "url": "https://github.com/itworksig/bob-plugin-openrouter/releases/download/v0.1.11/bob-plugin-openrouter.bobplugin",
+            "minBobVersion": "0.5.0",
+            "timestamp": 1793603833729
+        },
+        {
             "version": "0.1.10",
             "desc": "支持翻译模式和自定义 Prompt 模式",
             "sha256": "d8c15f3e7af425b4f66432d6054a98ac70bff9bd70688b2e22eaa2e8d2df824b",

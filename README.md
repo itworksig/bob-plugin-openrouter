@@ -8,6 +8,7 @@
 
 - 新增乌兹别克语、塔吉克语、波斯语、哈萨克语
 - 可在「翻译模式」和「自定义 Prompt」之间切换
+- 译文按 Markdown 返回，Bob 1.21 及以上会渲染标题、列表和表格
 - 插件图标换成 OpenRouter 标志
 - 更新检查指向本仓库的 [Releases](https://github.com/itworksig/bob-plugin-openrouter/releases)
 
@@ -63,6 +64,10 @@
 其他模型用「自定义模型」填写 OpenRouter 模型 ID。
 
 ## 更新日志
+
+### v0.1.11
+
+- 译文以 Markdown 返回，支持标题、列表和表格
 
 ### v0.1.10
 

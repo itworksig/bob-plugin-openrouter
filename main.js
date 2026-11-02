@@ -147,13 +147,22 @@ function translate(query, completion) {
             try {
                 const translation = resp.data.choices[0].message.content.trim();
                 $log.info(`翻译结果: ${translation}`);
-                completion({
+                const payload = {
                     result: {
                         from: query.detectFrom,
                         to: query.detectTo,
-                        toParagraphs: [translation]
+                        toParagraphs: [translation],
+                        content: {
+                            format: "markdown",
+                            text: translation
+                        }
                     }
-                });
+                };
+                if (typeof query.onCompletion === "function") {
+                    query.onCompletion(payload);
+                } else {
+                    completion(payload);
+                }
             } catch (e) {
                 $log.error(`解析错误: ${e.message}`);
                 completion({
