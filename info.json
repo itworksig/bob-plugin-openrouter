@@ -2,7 +2,7 @@
     "identifier": "com.openrouter.translate",
     "type": "translate",
     "name": "OpenRouter",
-    "version": "0.1.9",
+    "version": "0.1.10",
     "supportedLanguages": [
         "auto",
         "zh-Hans",
@@ -110,6 +110,37 @@
             "placeholder": "例如: anthropic/claude-3-opus",
             "condition": {
                 "model": "custom"
+            }
+        },
+        {
+            "identifier": "promptMode",
+            "type": "menu",
+            "title": "Prompt 模式",
+            "defaultValue": "translate",
+            "desc": "翻译模式使用内置翻译提示词；自定义模式使用下方填写的 Prompt",
+            "menuValues": [
+                {
+                    "title": "翻译模式",
+                    "value": "translate"
+                },
+                {
+                    "title": "自定义模式",
+                    "value": "custom"
+                }
+            ]
+        },
+        {
+            "identifier": "customPrompt",
+            "type": "text",
+            "title": "自定义 Prompt",
+            "defaultValue": "你是一个翻译助手。请把用户文本翻译成{to}，只返回译文，不要解释。",
+            "desc": "仅自定义模式生效。{from} 为源语言，{to} 为目标语言。写了 {text} 时，整段 Prompt 作为用户消息；没写时，Prompt 作为系统提示，原文单独发送。",
+            "textConfig": {
+                "type": "visible",
+                "height": 120
+            },
+            "condition": {
+                "promptMode": "custom"
             }
         }
     ]

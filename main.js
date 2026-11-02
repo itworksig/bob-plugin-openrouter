@@ -4,6 +4,43 @@ function supportLanguages() {
     return lang.supportLanguages.map(([standardLang, lang]) => standardLang);
 }
 
+function applyPromptVars(template, query) {
+    const fromName = lang.langMap.get(query.detectFrom) || query.detectFrom;
+    const toName = lang.langMap.get(query.detectTo) || query.detectTo;
+    return String(template)
+        .replace(/\{from\}/g, fromName)
+        .replace(/\{to\}/g, toName)
+        .replace(/\{text\}/g, query.text);
+}
+
+function buildMessages(query) {
+    const mode = $option.promptMode || "translate";
+    if (mode !== "custom") {
+        const target = lang.langMap.get(query.detectTo) || query.detectTo;
+        return {
+            system: "你是一个专业的翻译助手。请准确翻译用户的文本，保持原文的意思和语气。只返回翻译结果，不要解释或添加其他内容。如果看到 HTML 或代码片段，保持其格式不变。",
+            user: `将下面的文本翻译成${target}:\n\n${query.text}`
+        };
+    }
+
+    const customPrompt = ($option.customPrompt || "").trim();
+    if (!customPrompt) {
+        return null;
+    }
+
+    if (customPrompt.indexOf("{text}") !== -1) {
+        return {
+            system: "请严格按照用户的提示处理文本，只返回结果，不要解释。",
+            user: applyPromptVars(customPrompt, query)
+        };
+    }
+
+    return {
+        system: applyPromptVars(customPrompt, query),
+        user: query.text
+    };
+}
+
 var config = {
     apiKey: "YOUR_API_KEY", // 在 Bob 偏好设置中配置
     baseURL: "https://openrouter.ai/api/v1/chat/completions"
@@ -65,19 +102,27 @@ function translate(query, completion) {
         "X-Title": "Bob-OpenRouter-Plugin"
     };
 
-    // 修改提示方式
-    const prompt = lang.langMap.get(query.detectTo) || query.detectTo;
+    const messages = buildMessages(query);
+    if (!messages) {
+        completion({
+            error: {
+                type: "param",
+                message: "请填写自定义 Prompt"
+            }
+        });
+        return;
+    }
 
     const body = {
         model: modelId,
         messages: [
             {
                 role: "system",
-                content: "你是一个专业的翻译助手。请准确翻译用户的文本，保持原文的意思和语气。只返回翻译结果，不要解释或添加其他内容。如果看到 HTML 或代码片段，保持其格式不变。"
+                content: messages.system
             },
             {
                 role: "user",
-                content: `将下面的文本翻译成${prompt}:\n\n${query.text}`
+                content: messages.user
             }
         ]
     };

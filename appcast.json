@@ -2,6 +2,14 @@
     "identifier": "com.openrouter.translate",
     "versions": [
         {
+            "version": "0.1.10",
+            "desc": "支持翻译模式和自定义 Prompt 模式",
+            "sha256": "d8c15f3e7af425b4f66432d6054a98ac70bff9bd70688b2e22eaa2e8d2df824b",
+            "url": "https://github.com/itworksig/bob-plugin-openrouter/releases/download/v0.1.10/bob-plugin-openrouter.bobplugin",
+            "minBobVersion": "0.5.0",
+            "timestamp": 1793602124491
+        },
+        {
             "version": "0.1.9",
             "desc": "更换为 OpenRouter 图标",
             "sha256": "9ad606a1debbccc28eb8a7ea14ae5f0695e8ddd9dda63586eecfa53d5c360892",
