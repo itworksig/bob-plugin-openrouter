@@ -26,11 +26,11 @@
 ## 安装
 
 ### 方法一：手动安装（推荐）
-1. 下载插件：[点击下载](https://github.com/helloChenLei/bob-plugin-openrouter/releases/latest/download/bob-plugin-openrouter.bobplugin)
+1. 下载插件：[点击下载](https://github.com/itworksig/bob-plugin-openrouter/releases/latest/download/bob-plugin-openrouter.bobplugin)
 2. 双击下载的 `.bobplugin` 文件进行安装
 
 ### 方法二：手动安装
-1. 从 [Releases](https://github.com/username/bob-plugin-openrouter/releases) 页面下载最新版本的 `.bobplugin` 文件
+1. 从 [Releases](https://github.com/itworksig/bob-plugin-openrouter/releases) 页面下载最新版本的 `.bobplugin` 文件
 2. 双击安装
 
 ## 配置说明
@@ -70,6 +70,10 @@
 - 印地语 (hi)
 - 泰语 (th)
 - 越南语 (vi)
+- 乌兹别克语 (uz)
+- 塔吉克语 (tg)
+- 波斯语 (fa)
+- 哈萨克语 (kk)
 
 ## 常见问题
 
@@ -89,6 +93,9 @@
    - 考虑使用更高级的模型（如 GPT-4 或 Claude 3）
 
 ## 更新日志
+
+### v0.1.8
+- 新增乌兹别克语、塔吉克语、波斯语、哈萨克语
 
 ### v0.1.1
 - 优化插件配置界面

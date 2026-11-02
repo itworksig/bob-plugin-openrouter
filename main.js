@@ -66,7 +66,7 @@ function translate(query, completion) {
     };
 
     // 修改提示方式
-    const prompt = lang.langMap[query.detectTo] || query.detectTo;
+    const prompt = lang.langMap.get(query.detectTo) || query.detectTo;
 
     const body = {
         model: modelId,
