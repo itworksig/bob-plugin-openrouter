@@ -1,127 +1,86 @@
-# Bob OpenRouter 翻译插件
+# Bob OpenRouter
 
-这是一个基于 [OpenRouter](https://openrouter.ai/) API 的 [Bob](https://bobtranslate.com/) 翻译插件，支持使用多种大语言模型进行翻译。
+[itworksig](https://github.com/itworksig) 维护的 [Bob](https://bobtranslate.com/) 翻译插件，通过 [OpenRouter](https://openrouter.ai/) 调用大语言模型翻译。
 
-## 功能特点
+这是 [helloChenLei/bob-plugin-openrouter](https://github.com/helloChenLei/bob-plugin-openrouter) 的 fork。本仓库的安装包、更新源和后续改动都在这里。
 
-- 支持多种顶级 AI 模型翻译
-- 支持自定义模型选择
-- 支持翻译模式和自定义 Prompt
-- 支持自定义 API Base URL
-- 自动检查更新
+## 本 fork 的改动
 
-## 支持的模型
-
-- GPT-3.5 Turbo (openai/gpt-3.5-turbo)
-- GPT-4 (openai/gpt-4)
-- Claude 2.1 (anthropic/claude-2.1)
-- Claude 3 Opus (anthropic/claude-3-opus)
-- Claude 3 Sonnet (anthropic/claude-3-sonnet)
-- Gemini Pro (google/gemini-pro)
-- Mixtral 8x7B (mistralai/mixtral-8x7b)
-- Llama 2 70B (meta-llama/llama-2-70b-chat)
-- Code Llama 34B (codellama/codellama-34b-instruct)
-- Qwen 72B (qwen/qwen-72b-chat)
-- 支持自定义其他 OpenRouter 模型
+- 新增乌兹别克语、塔吉克语、波斯语、哈萨克语
+- 可在「翻译模式」和「自定义 Prompt」之间切换
+- 插件图标换成 OpenRouter 标志
+- 更新检查指向本仓库的 [Releases](https://github.com/itworksig/bob-plugin-openrouter/releases)
 
 ## 安装
 
-### 方法一：手动安装（推荐）
-1. 下载插件：[点击下载](https://github.com/itworksig/bob-plugin-openrouter/releases/latest/download/bob-plugin-openrouter.bobplugin)
-2. 双击下载的 `.bobplugin` 文件进行安装
-
-### 方法二：手动安装
-1. 从 [Releases](https://github.com/itworksig/bob-plugin-openrouter/releases) 页面下载最新版本的 `.bobplugin` 文件
+1. 下载最新插件：[bob-plugin-openrouter.bobplugin](https://github.com/itworksig/bob-plugin-openrouter/releases/latest/download/bob-plugin-openrouter.bobplugin)
 2. 双击安装
+3. 打开 Bob 偏好设置 → 服务 → OpenRouter，填入 API Key
 
-## 配置说明
+需要指定版本时，从 [Releases](https://github.com/itworksig/bob-plugin-openrouter/releases) 下载对应的 `.bobplugin`。
 
-### 1. 获取 OpenRouter API Key
-1. 注册/登录 [OpenRouter](https://openrouter.ai/)
-2. 进入 [API Keys](https://openrouter.ai/keys) 页面
-3. 创建新的 API Key
+## 配置
 
-### 2. 插件配置
-1. 打开 Bob 偏好设置
-2. 选择「服务」页面
-3. 找到「OpenRouter」服务
-4. 填写配置:
-   - API Key: 填入你的 OpenRouter API Key
-   - API Base URL: 默认为 `https://openrouter.ai/api/v1`
-   - AI Model: 选择想要使用的模型
-   - 如果选择「自定义模型」，需要在下方填写完整的模型 ID
-   - Prompt 模式: 选择「翻译模式」或「自定义模式」
-   - 自定义模式可填写自己的 Prompt。`{from}` 是源语言，`{to}` 是目标语言。Prompt 里写了 `{text}` 时，整段会作为用户消息；没写时，Prompt 作为系统提示，原文单独发送
+1. 在 [OpenRouter API Keys](https://openrouter.ai/keys) 创建 API Key
+2. 在 Bob 里找到 OpenRouter 服务，填写：
+
+| 选项 | 说明 |
+| --- | --- |
+| API Key | OpenRouter 的密钥 |
+| API Base URL | 固定为 `https://openrouter.ai/api/v1` |
+| AI Model | 预设模型，或选「自定义模型」后填写完整模型 ID，例如 `anthropic/claude-3-opus` |
+| Prompt 模式 | 「翻译模式」使用内置提示词；「自定义模式」使用自己的 Prompt |
+
+自定义 Prompt 里可以用：
+
+- `{from}`：源语言
+- `{to}`：目标语言
+- `{text}`：原文。写了它，整段 Prompt 会作为用户消息；没写时，Prompt 作为系统提示，原文单独发送
+
+默认自定义 Prompt：
+
+```text
+你是一个翻译助手。请把用户文本翻译成{to}，只返回译文，不要解释。
+```
 
 ## 支持的语言
 
-- 中文简体 (zh-Hans)
-- 中文繁体 (zh-Hant)
-- 英语 (en)
-- 日语 (ja)
-- 韩语 (ko)
-- 法语 (fr)
-- 德语 (de)
-- 西班牙语 (es)
-- 意大利语 (it)
-- 俄语 (ru)
-- 葡萄牙语 (pt)
-- 荷兰语 (nl)
-- 波兰语 (pl)
-- 阿拉伯语 (ar)
-- 南非语 (af)
-- 印地语 (hi)
-- 泰语 (th)
-- 越南语 (vi)
-- 乌兹别克语 (uz)
-- 塔吉克语 (tg)
-- 波斯语 (fa)
-- 哈萨克语 (kk)
+简体中文、繁体中文、英语、日语、韩语、法语、德语、西班牙语、意大利语、俄语、葡萄牙语、荷兰语、波兰语、阿拉伯语、南非语、印地语、泰语、越南语、乌兹别克语、塔吉克语、波斯语、哈萨克语，以及自动检测。
 
-## 常见问题
+## 预设模型
 
-1. **翻译失败，提示 API Key 错误**
-   - 检查 API Key 是否正确填写
-   - 确认 API Key 是否有效
-   - 检查账户余额是否充足
+- GPT-3.5 Turbo `openai/gpt-3.5-turbo`
+- GPT-4 `openai/gpt-4`
+- Claude 2.1 `anthropic/claude-2.1`
+- Claude 3 Opus `anthropic/claude-3-opus`
+- Claude 3 Sonnet `anthropic/claude-3-sonnet`
+- Gemini Pro `google/gemini-pro`
+- Mixtral 8x7B `mistralai/mixtral-8x7b`
+- Llama 2 70B `meta-llama/llama-2-70b-chat`
+- Code Llama 34B `codellama/codellama-34b-instruct`
+- Qwen 72B `qwen/qwen-72b-chat`
 
-2. **自定义模型无法使用**
-   - 确认填写了正确的模型 ID
-   - 检查该模型是否在你的 OpenRouter 账户中可用
-   - 确认账户有足够的额度使用该模型
-
-3. **翻译结果不准确**
-   - 尝试使用其他 AI 模型
-   - 确保源文本清晰完整
-   - 考虑使用更高级的模型（如 GPT-4 或 Claude 3）
+其他模型用「自定义模型」填写 OpenRouter 模型 ID。
 
 ## 更新日志
 
 ### v0.1.10
-- 支持在翻译模式和自定义 Prompt 模式之间切换
+
+- 支持翻译模式和自定义 Prompt
 
 ### v0.1.9
+
 - 更换为 OpenRouter 图标
 
 ### v0.1.8
+
 - 新增乌兹别克语、塔吉克语、波斯语、哈萨克语
 
-### v0.1.1
-- 优化插件配置界面
-- 改进自定义模型输入体验
-- 优化 API Base URL 显示
+v0.1.7 及更早版本来自上游仓库。
 
-### v0.1.0
-- 初始版本发布
-- 支持多种 AI 模型翻译
-- 支持自定义模型和 API URL
-- 支持自动更新
+## 相关链接
 
-## 许可证
-
-[MIT License](LICENSE)
-
-## 致谢
-
-- [Bob](https://bobtranslate.com/)
-- [OpenRouter](https://openrouter.ai/) 
+- 本仓库：https://github.com/itworksig/bob-plugin-openrouter
+- 上游：https://github.com/helloChenLei/bob-plugin-openrouter
+- Bob：https://bobtranslate.com/
+- OpenRouter：https://openrouter.ai/
