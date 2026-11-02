@@ -2,7 +2,7 @@
     "identifier": "com.openrouter.translate",
     "type": "translate",
     "name": "OpenRouter",
-    "version": "0.1.11",
+    "version": "0.1.12",
     "supportedLanguages": [
         "auto",
         "zh-Hans",
@@ -26,7 +26,12 @@
         "uz",
         "tg",
         "fa",
-        "kk"
+        "kk",
+        "ur",
+        "id",
+        "ms",
+        "pa",
+        "ps"
     ],
     "homepage": "https://github.com/itworksig/bob-plugin-openrouter",
     "appcast": "https://raw.githubusercontent.com/itworksig/bob-plugin-openrouter/main/appcast.json",
